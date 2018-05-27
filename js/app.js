@@ -1,6 +1,17 @@
+//Create arrays for different card states (All Cards, Open Cards, Matched Cards)
+const cards = Array.from(document.getElementsByClassName('card'));
+
+const openCards = Array.from(document.getElementsByClassName('open show'));
+
+const matchedCards = document.getElementsByClassName('match');
+
+
 /*
  * Create a list that holds all of your cards
  */
+
+
+//const arrclose = Array.from(closeCard);
 
 
 /*
