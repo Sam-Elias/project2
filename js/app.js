@@ -5,9 +5,22 @@ var openCards = Array.from(document.getElementsByClassName('open show'));
 
 var matchedCards = Array.from(document.getElementsByClassName('match'));
 
-var cardClicked;
+var cardClicked
 
 //all game functions are written here
+
+
+// _counter function
+function _counter() {
+  console.log('_counter was called!!');
+  let counterNumber = parseInt(document.querySelector('.moves').textContent, 10);
+  counterNumber += 1
+  let counter = document.querySelector('.moves');
+  counter.textContent = counterNumber;
+}
+//*get element with class 'counter'
+//*add =+ 1 to the number being displayed
+//*update the element to show new number
 
 
 //Loop through all cards and select the card clicked
@@ -56,6 +69,7 @@ function gameLogic (cardClicked) {
 // -first?- check to see if the card is the first to be opened
   else if (openCards.length === 0) {
     console.log('first? is working!')
+    _counter();
     this.classList.add('open', 'show');
     openCards.push(this);
     //_openCard(); ( I wanted to put this.classList.add('open' 'show') inside of the openCard function but it does not work)
@@ -65,6 +79,7 @@ function gameLogic (cardClicked) {
   // -second?- check to see if the card is the second to be opened
   else if (openCards.length === 1) {
     console.log('second? is working!')
+    _counter();
     this.classList.add('open', 'show');
     _compareCard();
     return
@@ -131,11 +146,7 @@ function gameLogic (cardClicked) {
   *and 'match' from them.
   *--run suffle function on cards array
   */
-  /*
-  --- _counter function---
-  *get element with class 'counter'
-  *add =+ 1 to the number being displayed
-  *update the element to show new number
+
 /*
  * Create a list that holds all of your cards
  */
