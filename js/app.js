@@ -10,7 +10,7 @@ var cardClicked
 //all game functions are written here
 
 
-// _counter function
+// _counter function gets .moves element and trasnform to number, add 1 and updates the element.
 function _counter() {
   console.log('_counter was called!!');
   let counterNumber = parseInt(document.querySelector('.moves').textContent, 10);
@@ -18,9 +18,25 @@ function _counter() {
   let counter = document.querySelector('.moves');
   counter.textContent = counterNumber;
 }
-//*get element with class 'counter'
-//*add =+ 1 to the number being displayed
-//*update the element to show new number
+
+
+// _compareCard function
+function _compareCard() {
+  console.log('_compareCard was called!!');
+  let card1 = openCards[0].firstElementChild.className;
+  let card2 = openCards[1].firstElementChild.className;
+  card1 === card2 ? console.log('run _matchClass() is called!!') : console.log('run _removeClass() is called!!');
+}
+/*
+--- _compareCard Function---
+*run _counter function
+*get the two elements inside openCards array and compare (===)
+*   if true run _matchClass function
+*     check to see if matchedCards is === 16
+*        if true game over + restart function
+*   if false
+*     run _removeClass function
+*/
 
 
 //Loop through all cards and select the card clicked
@@ -81,6 +97,7 @@ function gameLogic (cardClicked) {
     console.log('second? is working!')
     _counter();
     this.classList.add('open', 'show');
+    openCards.push(this);
     _compareCard();
     return
   }
@@ -115,16 +132,7 @@ function gameLogic (cardClicked) {
   ***** function(el) {
   ***** el.classList.add('open', 'show');
   */
-  /*
-  --- _compareCard Function---
-  *run _counter function
-  *get the two elements inside openCards array and compare (===)
-  *   if true run _matchClass function
-  *     check to see if matchedCards is === 16
-  *        if true game over + restart function
-  *   if false
-  *     run _removeClass function
-  */
+
   /*
   --- _removeClass function---
   *for both elements of array openCards - remove class 'open show'
