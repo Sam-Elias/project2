@@ -5,13 +5,34 @@ const openCards = Array.from(document.getElementsByClassName('open show'));
 
 const matchedCards = Array.from(document.getElementsByClassName('match'));
 
+var cardClicked;
+
 
 //Loop through all cards and select the card clicked
-cards.forEach(function (el) {
-  el.addEventListener('click', clickFunction(el);
+cards.forEach(function (el_clicked) {
+  cardClicked = el_clicked;
+  el_clicked.addEventListener('click', gameLogic);
+  console.log (el_clicked);
+});
+
+//Creates the function that handles the card clicked
+function gameLogic (cardClicked) {
+  console.log('gameLogic function is linked!');
+
+// check to see if card is already open
+if (this.classList.contains('open')) {
+ console.log('open? is working!');
+ alert('What are you doing? This is already open, please chose another card!');
+ return
 }
-  /*
-  ---clickFunction---
+
+}
+
+
+//window.alert('What are you doing? This card is already open. Please pick another one.');
+//return;
+//  })
+
   //if
   /*
   *card is already open - display card is already open and return
@@ -82,7 +103,7 @@ cards.forEach(function (el) {
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+/*
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -97,8 +118,7 @@ function shuffle(array) {
 
     return array;
 }
-
-
+*/
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
