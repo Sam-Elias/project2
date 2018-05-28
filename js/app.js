@@ -7,6 +7,8 @@ const matchedCards = Array.from(document.getElementsByClassName('match'));
 
 var cardClicked;
 
+//all game functions are written here
+
 
 //Loop through all cards and select the card clicked
 cards.forEach(function (el_clicked) {
@@ -15,25 +17,53 @@ cards.forEach(function (el_clicked) {
   console.log (el_clicked);
 });
 
+
+
+/*
+// _openCard - This function opens the card by assigning it the class open and show
+function _openCard (cardClicked) {
+  //run counter function (to be added when counter function is created)
+  console.log('openCard is returning this:' + this);
+  this.classList.add('open', 'show');
+}
+*/
+
+
+
 //Creates the function that handles the card clicked
 function gameLogic (cardClicked) {
   console.log('gameLogic function is linked!');
 
 // -open?- check to see if card is already open
-if (this.classList.contains('open')) {
- console.log('open? is working!');
- alert('What are you doing? This is already open, please chose another card!');
- return
-}
+  if (this.classList.contains('open')) {
+    console.log('open? is working!');
+    alert('What are you doing? This is already open, please choose another card!');
+    return
+  }
 
 // -matched?- check to see if card is already matched
-if (this.classList.contains('match')) {
- console.log('matched? is working!');
- alert('Wasting your clicks! This is one is already matched, please chose another card!');
- return
-}
+  else if (this.classList.contains('match')) {
+    console.log('matched? is working!');
+    alert('Wasting your clicks! This is one is already matched, please chose another card!');
+   return
+  }
+
+// -first?- check to see if the card is the first to be opened
+  else if (openCards.length === 0) {
+    console.log('first? is working!')
+    this.classList.add('open', 'show');
+    //_openCard(); ( I wanted to put this.classList.add('open' 'show') inside of the openCard function but it does not work)
+    return
+  }
+
+  // -second?- check to see if the card is the second to be opened
+  //else if (openCards.length ===)
+
+
 
 }
+
+
 
 
   //if
