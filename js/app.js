@@ -19,19 +19,22 @@ cards.forEach(function (el_clicked) {
 function gameLogic (cardClicked) {
   console.log('gameLogic function is linked!');
 
-// check to see if card is already open
+// -open?- check to see if card is already open
 if (this.classList.contains('open')) {
  console.log('open? is working!');
  alert('What are you doing? This is already open, please chose another card!');
  return
 }
 
+// -matched?- check to see if card is already matched
+if (this.classList.contains('match')) {
+ console.log('matched? is working!');
+ alert('Wasting your clicks! This is one is already matched, please chose another card!');
+ return
 }
 
+}
 
-//window.alert('What are you doing? This card is already open. Please pick another one.');
-//return;
-//  })
 
   //if
   /*
