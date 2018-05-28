@@ -1,9 +1,9 @@
 //Create arrays for different card states (All Cards, Open Cards, Matched Cards)
 const cards = Array.from(document.getElementsByClassName('card'));
 
-const openCards = Array.from(document.getElementsByClassName('open show'));
+var openCards = Array.from(document.getElementsByClassName('open show'));
 
-const matchedCards = Array.from(document.getElementsByClassName('match'));
+var matchedCards = Array.from(document.getElementsByClassName('match'));
 
 var cardClicked;
 
@@ -20,9 +20,14 @@ cards.forEach(function (el_clicked) {
 
 
 /*
+-------THIS FUNCTION IS NOT WORKING. THE CONSOLE GIVES ME AN ERROR SAYING
+-------Uncaught TypeError: Cannot read property 'add' of undefined.
+
 // _openCard - This function opens the card by assigning it the class open and show
+
+
 function _openCard (cardClicked) {
-  //run counter function (to be added when counter function is created)
+  ***run counter function
   console.log('openCard is returning this:' + this);
   this.classList.add('open', 'show');
 }
@@ -52,12 +57,18 @@ function gameLogic (cardClicked) {
   else if (openCards.length === 0) {
     console.log('first? is working!')
     this.classList.add('open', 'show');
+    openCards.push(this);
     //_openCard(); ( I wanted to put this.classList.add('open' 'show') inside of the openCard function but it does not work)
     return
   }
 
   // -second?- check to see if the card is the second to be opened
-  //else if (openCards.length ===)
+  else if (openCards.length === 1) {
+    console.log('second? is working!')
+    this.classList.add('open', 'show');
+    _compareCard();
+    return
+  }
 
 
 
