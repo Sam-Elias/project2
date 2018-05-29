@@ -28,7 +28,7 @@ function _compareCard() {
   console.log('_compareCard was called!!');
   let card1class = openCards[0].firstElementChild.className;
   let card2class = openCards[1].firstElementChild.className;
-  card1class === card2class ? console.log('run _matchClass() is called!!') : setTimeout (_removeClass, 800);
+  card1class === card2class ?  _matchClass() : setTimeout (_removeClass, 800);
 }
 
 
@@ -38,9 +38,18 @@ function _removeClass() {
   openCards[0].classList.remove('open', 'show');
   openCards[1].classList.remove('open', 'show');
   openCards.splice(0, 2);
-
 }
 
+//_matchClass function remove class open and show from both elements, add class match, and add elements to array matchedCards
+function _matchClass() {
+  console.log('_matchClass called!!');
+  openCards[0].classList.remove('open', 'show');
+  openCards[1].classList.remove('open', 'show');
+  openCards[0].classList.add('match');
+  openCards[1].classList.add('match');
+  matchedCards.push(openCards[0], openCards[1]);
+  openCards.splice(0, 2);
+}
 
 
 //Loop through all cards and select the card clicked
@@ -137,13 +146,6 @@ function gameLogic (cardClicked) {
   ***** el.classList.add('open', 'show');
   */
 
-
-  /*
-  --- _matchClass function---
-  *for both elements of array openCards - remove class 'open show' add class 'match'
-
-
-  */
   /*
   --- _gameOver function---
   *run _modal function
