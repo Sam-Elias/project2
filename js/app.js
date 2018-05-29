@@ -12,6 +12,33 @@ var cardClicked;
 
 //all game functions are written here
 
+// _restart function resets game
+// removes the class match from all elements of array matchedCards
+// empties the array matchedCards
+// shuffles cards
+// resets the counter to zero
+// resets the timer
+// resets the stars to 3 yellow
+function _restart () {
+  console.log('_restart was called!!');
+  matchedCards.forEach(function (el_matched) {
+    this.classList.remove('match');
+    matchedCards.splice(0,1);
+  });
+  _shuffle();
+  let counter = document.querySelector('.moves');
+  counter.textContent = 0;
+  //resets timer
+  //resets stars
+}
+/*
+--- _restart function---
+*--set element with class number to 0
+*--loop through array cards and get all elements with class 'open show'
+*and all elements with class 'match' and then remove the class 'open show'
+*and 'match' from them.
+*--run suffle function on cards array
+*/
 
 // _counter function gets .moves element and trasnform to number, add 1 and updates the element.
 function _counter() {
@@ -151,14 +178,7 @@ function gameLogic (cardClicked) {
   *run _modal function
   *run _restart function
   */
-  /*
-  --- _restart function---
-  *--set element with class number to 0
-  *--loop through array cards and get all elements with class 'open show'
-  *and all elements with class 'match' and then remove the class 'open show'
-  *and 'match' from them.
-  *--run suffle function on cards array
-  */
+
 
 /*
  * Create a list that holds all of your cards
@@ -173,7 +193,7 @@ function gameLogic (cardClicked) {
  */
 /*
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+function _shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
