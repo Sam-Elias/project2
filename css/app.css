@@ -107,3 +107,15 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ *Star styles
+ */
+
+ .star {
+  color: #aa7ecd;
+ }
+
+ .lost-star {
+   color: gray;
+ }

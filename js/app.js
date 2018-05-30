@@ -13,11 +13,14 @@ var counter = document.querySelector('.moves');
 
 var timer = document.getElementById('timer');
 
+var stars = document.querySelectorAll('.star');
+
 var seconds = 00;
 
 var minutes = 00;
 
 var t;
+
 
 
 //all game functions are written here
@@ -34,11 +37,18 @@ function _clock() {
 
   _timer();
 }
+
 // _timer function from https://jsfiddle.net/Daniel_Hug/pvk6p/
 function _timer() {
   setTimeout(_clock, 1000);
 }
 
+function _resetStars() {
+  for ( let star of stars) {
+    star.classList.replace('lost-star', 'star')
+    console.log(star);
+  }
+}
 // _restart function resets game
 function _restart() {
   console.log('_restart was called!!');
@@ -52,9 +62,9 @@ function _restart() {
   // resets the counter to zero
   counter.textContent = 0;
 //resets timer
-  _timer()
-//resets stars
 
+//resets stars
+  _resetStars();
 }
 
 //*****With help from Carlos Fins******
@@ -64,15 +74,6 @@ function _shuffle() {
   deck.innerHTML = "";
   for (let card of cards) deck.appendChild(card);
 }
-
-  //convert from array to object
-  function toObject(arr) {
-  var rv = {};
-  for (var i = 0; i < arr.length; ++i)
-    rv[i] = arr[i];
-  return rv;
-}
-
 
 // shuffle function is the shuffle "engine"
 function shuffleEngine(array) {
@@ -97,6 +98,15 @@ function _counter() {
   counterNumber += 1
   counter.textContent = counterNumber;
   if (counter.textContent == 1) {_timer()}
+  else if (counter.textContent == 12) {
+    stars.item(2).classList.replace('star', 'lost-star');
+  }
+  else if (counter.textContent == 24) {
+    stars.item(1).classList.replace('star', 'lost-star');
+  }
+  else if (counter.textContent == 36) {
+    stars.item(0).classList.replace('star', 'lost-star');
+  }
 }
 
 // _compareCard function compare the elements inside openCards array and assign function based on output of comparison.
