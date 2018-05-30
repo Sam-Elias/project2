@@ -1,7 +1,6 @@
 //Create arrays for different card states (All Cards, Open Cards, Matched Cards)
 var cards = Array.from(document.getElementsByClassName('card'));
 
-
 var openCards = Array.from(document.getElementsByClassName('open show'));
 
 var matchedCards = Array.from(document.getElementsByClassName('match'));
@@ -10,29 +9,52 @@ var deck = document.querySelector('.deck');
 
 var cardClicked;
 
-var shuffledArray;
+var counter = document.querySelector('.moves');
+
+var timer = document.getElementById('timer');
+
+var seconds = 00;
+
+var minutes = 00;
+
+var t;
 
 
 //all game functions are written here
 
+// _clock function from https://jsfiddle.net/Daniel_Hug/pvk6p/
+function _clock() {
+  seconds++;
+  if (seconds >= 60) {
+      seconds = 0;
+      minutes++;
+  }
+
+  timer.innerHTML = ((minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
+
+  _timer();
+}
+// _timer function from https://jsfiddle.net/Daniel_Hug/pvk6p/
+function _timer() {
+  setTimeout(_clock, 1000);
+}
+
 // _restart function resets game
-// removes the class match from all elements of array matchedCards
-// empties the array matchedCards
-// shuffles cards
-// resets the counter to zero
-// resets the timer
-// resets the stars to 3 yellow
-function _restart () {
+function _restart() {
   console.log('_restart was called!!');
+// removes the class match from all elements of array matchedCards and empties matchedCards
   matchedCards.forEach(function (el_matched) {
     this.classList.remove('match');
     matchedCards.splice(0,1);
   });
+// shuffles cards
   _shuffle();
-  let counter = document.querySelector('.moves');
+  // resets the counter to zero
   counter.textContent = 0;
-  //resets timer
-  //resets stars
+//resets timer
+  _timer()
+//resets stars
+
 }
 
 //*****With help from Carlos Fins******
@@ -68,16 +90,14 @@ function shuffleEngine(array) {
     return array;
 }
 
-
-// _counter function gets .moves element and trasnform to number, add 1 and updates the element.
+// _counter function updates the moves count and start the timer
 function _counter() {
   console.log('_counter was called!!');
   let counterNumber = parseInt(document.querySelector('.moves').textContent, 10);
   counterNumber += 1
-  let counter = document.querySelector('.moves');
   counter.textContent = counterNumber;
+  if (counter.textContent == 1) {_timer()}
 }
-
 
 // _compareCard function compare the elements inside openCards array and assign function based on output of comparison.
 function _compareCard() {
@@ -86,7 +106,6 @@ function _compareCard() {
   let card2class = openCards[1].firstElementChild.className;
   card1class === card2class ?  _matchClass() : setTimeout (_removeClass, 800);
 }
-
 
 //_removeClass function remove class open and show from both elements of openCards
 function _removeClass() {
@@ -107,14 +126,12 @@ function _matchClass() {
   openCards.splice(0, 2);
 }
 
-
 //Loop through all cards and select the card clicked
 cards.forEach(function (el_clicked) {
   cardClicked = el_clicked;
   el_clicked.addEventListener('click', gameLogic);
-  console.log (el_clicked);
+  console.log ('Game started!!');
 });
-
 
 //Creates the function that handles the card clicked
 function gameLogic (cardClicked) {
