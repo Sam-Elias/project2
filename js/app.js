@@ -21,9 +21,15 @@ var minutes = 00;
 
 var t;
 
+var shouldContinue = true;
+
+var restart = document.querySelector('.restart');
+
 
 
 //all game functions are written here
+
+restart.addEventListener('click', _restart);
 
 // _clock function from https://jsfiddle.net/Daniel_Hug/pvk6p/
 function _clock() {
@@ -40,11 +46,11 @@ function _clock() {
 
 // _timer function from https://jsfiddle.net/Daniel_Hug/pvk6p/
 function _timer() {
-  setTimeout(_clock, 1000);
+  shouldContinue? setTimeout(_clock, 1000) : timer.innerHTML = "00:00";
 }
 
-function _resetClock () {
-  timer.innerHTML = "00:00"
+function _resetClock() {
+  shouldContinue = false;
 }
 
 function _resetStars() {
@@ -70,16 +76,15 @@ function _starColor (){
 function _restart() {
   console.log('_restart was called!!');
 // removes the class match from all elements of array matchedCards and empties matchedCards
-  matchedCards.forEach(function (el_matched) {
-    this.classList.remove('match');
-    matchedCards.splice(0,1);
+  matchedCards.forEach(function (cards) {
+    cards.classList.remove('match');
   });
 // shuffles cards
   _shuffle();
   // resets the counter to zero
   counter.textContent = 0;
 //resets timer
-_resetClock();
+  shouldContinue = false;
 //resets stars
   _resetStars();
 }
@@ -143,6 +148,9 @@ function _matchClass() {
   openCards[1].classList.add('match');
   matchedCards.push(openCards[0], openCards[1]);
   openCards.splice(0, 2);
+  if (matchedCards.length == 16) {
+     alert('Game Over');
+  }
 }
 
 //Loop through all cards and select the card clicked
@@ -173,10 +181,9 @@ function gameLogic (cardClicked) {
 // -first?- check to see if the card is the first to be opened
   else if (openCards.length === 0) {
     console.log('first? is working!')
-    _counter();
     this.classList.add('open', 'show');
     openCards.push(this);
-    //_openCard(); ( I wanted to put this.classList.add('open' 'show') inside of the openCard function but it does not work)
+    _counter();
     return
   }
 
