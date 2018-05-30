@@ -1,13 +1,16 @@
 //Create arrays for different card states (All Cards, Open Cards, Matched Cards)
-const cards = Array.from(document.getElementsByClassName('card'));
+var cards = Array.from(document.getElementsByClassName('card'));
+
 
 var openCards = Array.from(document.getElementsByClassName('open show'));
 
 var matchedCards = Array.from(document.getElementsByClassName('match'));
 
+var deck = document.querySelector('.deck');
+
 var cardClicked;
 
-
+var shuffledArray;
 
 
 //all game functions are written here
@@ -31,14 +34,40 @@ function _restart () {
   //resets timer
   //resets stars
 }
-/*
---- _restart function---
-*--set element with class number to 0
-*--loop through array cards and get all elements with class 'open show'
-*and all elements with class 'match' and then remove the class 'open show'
-*and 'match' from them.
-*--run suffle function on cards array
-*/
+
+//*****With help from Carlos Fins******
+// _shuffle function uses shuffleEngine and assigns the shuffled cards to the deck ul
+function _shuffle() {
+  shuffleEngine(cards);
+  deck.innerHTML = "";
+  for (let card of cards) deck.appendChild(card);
+}
+
+  //convert from array to object
+  function toObject(arr) {
+  var rv = {};
+  for (var i = 0; i < arr.length; ++i)
+    rv[i] = arr[i];
+  return rv;
+}
+
+
+// shuffle function is the shuffle "engine"
+function shuffleEngine(array) {
+
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 
 // _counter function gets .moves element and trasnform to number, add 1 and updates the element.
 function _counter() {
@@ -87,23 +116,6 @@ cards.forEach(function (el_clicked) {
 });
 
 
-
-/*
--------THIS FUNCTION IS NOT WORKING. THE CONSOLE GIVES ME AN ERROR SAYING
--------Uncaught TypeError: Cannot read property 'add' of undefined.
-
-// _openCard - This function opens the card by assigning it the class open and show
-
-
-function _openCard (cardClicked) {
-  ***run counter function
-  console.log('openCard is returning this:' + this);
-  this.classList.add('open', 'show');
-}
-*/
-
-
-
 //Creates the function that handles the card clicked
 function gameLogic (cardClicked) {
   console.log('gameLogic function is linked!');
@@ -141,9 +153,6 @@ function gameLogic (cardClicked) {
     _compareCard();
     return
   }
-
-
-
 }
 
 
