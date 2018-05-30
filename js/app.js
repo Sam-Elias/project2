@@ -43,6 +43,10 @@ function _timer() {
   setTimeout(_clock, 1000);
 }
 
+function _resetClock () {
+  timer.innerHTML = "00:00"
+}
+
 function _resetStars() {
   for ( let star of stars) {
     star.classList.replace('lost-star', 'star')
@@ -75,7 +79,7 @@ function _restart() {
   // resets the counter to zero
   counter.textContent = 0;
 //resets timer
-
+_resetClock();
 //resets stars
   _resetStars();
 }
