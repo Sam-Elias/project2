@@ -49,6 +49,19 @@ function _resetStars() {
     console.log(star);
   }
 }
+
+function _starColor (){
+  if (counter.textContent == 12) {
+    stars.item(2).classList.replace('star', 'lost-star');
+  }
+  else if (counter.textContent == 24) {
+    stars.item(1).classList.replace('star', 'lost-star');
+  }
+  else if (counter.textContent == 36) {
+    stars.item(0).classList.replace('star', 'lost-star');
+  }
+}
+
 // _restart function resets game
 function _restart() {
   console.log('_restart was called!!');
@@ -98,15 +111,7 @@ function _counter() {
   counterNumber += 1
   counter.textContent = counterNumber;
   if (counter.textContent == 1) {_timer()}
-  else if (counter.textContent == 12) {
-    stars.item(2).classList.replace('star', 'lost-star');
-  }
-  else if (counter.textContent == 24) {
-    stars.item(1).classList.replace('star', 'lost-star');
-  }
-  else if (counter.textContent == 36) {
-    stars.item(0).classList.replace('star', 'lost-star');
-  }
+  _starColor();
 }
 
 // _compareCard function compare the elements inside openCards array and assign function based on output of comparison.
