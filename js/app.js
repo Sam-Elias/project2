@@ -81,15 +81,16 @@ function _compareCard() {
 // Removes class open and show from both elements and assigns class match,
 // add elements to array matchedCards, and check to see if game is over.
 function _matchClass() {
-  openCards[0].classList.replace('open', 'show');
+  console.log('_matchClass called!!');
+  openCards[0].classList.remove('open', 'show');
   openCards[1].classList.remove('open', 'show');
   openCards[0].classList.add('match');
   openCards[1].classList.add('match');
   matchedCards.push(openCards[0], openCards[1]);
   openCards.splice(0, 2);
   if (matchedCards.length == 16) {
-  finalTime = counter.textContent;
-  alert('Game Over');
+    finalTime = counter.textContent;
+     alert('Game Over');
   }
 }
 
