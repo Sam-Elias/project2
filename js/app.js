@@ -166,6 +166,7 @@ function _restart() {
   matchedCards.forEach(function (cards) {
     cards.classList.remove('match');
   });
+  matchedCards = [];
 // shuffles cards
   _shuffle();
 // resets the counter to zero
