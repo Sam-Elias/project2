@@ -17,7 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    color: #fff;
+    background-color: #000;
     font-family: 'Coda', cursive;
 }
 
@@ -109,6 +110,10 @@ h1 {
     cursor: pointer;
 }
 
+.timer {
+  text-align: center;
+}
+
 /*
  *Star styles
  */
@@ -142,7 +147,7 @@ h1 {
 }
 
 .modalBackground {
-  /*display:none;*/
+  display:none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -155,7 +160,6 @@ h1 {
 }
 
 .modalContent {
-  /*background-color: #02ccba;*/
   background: url('../img/fireworks2.jpg') no-repeat center center;
   align-content: center;
   margin: 20% auto;

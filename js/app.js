@@ -29,6 +29,20 @@ let restart = document.querySelector('.restart');
 
 let finalTime;
 
+let modal = document.querySelector('.modalBackground');
+
+let replay = document.querySelector('.modalBtn');
+
+let starNum = parseInt(document.querySelector('#htmlStars').textContent, 10);
+
+let htmlStars = document.querySelector('#htmlStars');
+
+let modalMinutes = document.querySelector('#finalMinutes');
+
+let modalSeconds = document.querySelector('#finalSeconds');
+
+
+
 /*
 *FUNCTIONS:
 */
@@ -67,7 +81,11 @@ function _counter() {
   let counterNumber = parseInt(document.querySelector('.moves').textContent, 10);
   counterNumber += 1
   counter.textContent = counterNumber;
-  if (counter.textContent == 1) {_timer()}
+  if (counter.textContent == 1) {
+    _resetClock();
+    shouldContinue = true;
+    _timer();
+  }
   _starColor();
 }
 
@@ -81,7 +99,6 @@ function _compareCard() {
 // Removes class open and show from both elements and assigns class match,
 // add elements to array matchedCards, and check to see if game is over.
 function _matchClass() {
-  console.log('_matchClass called!!');
   openCards[0].classList.remove('open', 'show');
   openCards[1].classList.remove('open', 'show');
   openCards[0].classList.add('match');
@@ -89,8 +106,7 @@ function _matchClass() {
   matchedCards.push(openCards[0], openCards[1]);
   openCards.splice(0, 2);
   if (matchedCards.length == 16) {
-    finalTime = counter.textContent;
-     alert('Game Over');
+    _openModal();
   }
 }
 
@@ -140,6 +156,8 @@ function _timer() {
 // Resets the _clock
 function _resetClock() {
   shouldContinue = false;
+  seconds = 00;
+  minutes = 00;
 }
 
 // Resets game to original condition
@@ -153,9 +171,11 @@ function _restart() {
 // resets the counter to zero
   counter.textContent = 0;
 //resets timer
-  shouldContinue = false;
+  _resetClock();
 //resets stars
   _resetStars();
+//Removes modal
+  _closeModal();
 }
 
 //*****With help from peer Udacity student Carlos Fins!!******
@@ -179,6 +199,21 @@ function shuffleEngine(array) {
     return array;
 }
 
+// Opens modal
+function _openModal() {
+  for (let star of stars) {
+    if (star.classList.contains('lost-star'))  starNum -= 1;
+    htmlStars.textContent = starNum;
+  }
+  modalMinutes.textContent = minutes
+  modalSeconds.textContent = seconds
+  modal.style.display = 'block';
+}
+
+function _closeModal() {
+  modal.style.display = 'none';
+}
+
 /*
 * Event Listeners
 */
@@ -191,3 +226,6 @@ cards.forEach(function (clicked) {
 
 //Listens to a click on the restart button and run _restart
 restart.addEventListener('click', _restart);
+
+//Listens to a click on the replay button and run _restart
+replay.addEventListener('click', _restart);
