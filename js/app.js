@@ -134,6 +134,7 @@ function _starColor (){
 function _resetStars() {
   for ( let star of stars) {
     star.classList.replace('lost-star', 'star')
+    starNum = [];
   }
 }
 
