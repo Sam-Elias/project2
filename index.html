@@ -5,7 +5,7 @@
     <title>Matching Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link href="https://fonts.googleapis.com/css?family=Coda|Nanum+Pen+Script" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -15,7 +15,14 @@
             <h1>Matching Game</h1>
             <h2>Timer <time id='timer'>00:00</time></h2>
         </header>
-
+        <div class="modalBackground">
+            <div class="modalContent">
+              <h1 id="modalTitle">Game Over</h1>
+              <p id="modalP">Congratulations!<br> You made it in <span id="finalMinutes">01</span> minutes and
+               <span id="finalSeconds">01</span> seconds.<br> You are a <span id="starsLength">0</span> star player!</p>
+              <button class="modalBtn" type="button" name="button">Play again!</button>
+            </div>
+        </div>
         <section class="score-panel">
         	<ul class="stars">
         		<li><i class="fa fa-star star"></i></li>
