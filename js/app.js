@@ -29,17 +29,17 @@ let restart = document.querySelector('.restart');
 
 let finalTime;
 
-let modal = document.querySelector('.modalBackground');
+let modal = document.querySelector('.modal-background');
 
 let replay = document.querySelector('.modalBtn');
 
-let starNum = parseInt(document.querySelector('#htmlStars').textContent, 10);
+let starNum = parseInt(document.querySelector('#html-stars').textContent, 10);
 
-let htmlStars = document.querySelector('#htmlStars');
+let htmlStars = document.querySelector('#html-stars');
 
-let modalMinutes = document.querySelector('#finalMinutes');
+let modalMinutes = document.querySelector('#final-minutes');
 
-let modalSeconds = document.querySelector('#finalSeconds');
+let modalSeconds = document.querySelector('#final-seconds');
 
 
 
@@ -119,14 +119,11 @@ function _removeClass() {
 
 // Removes purple stars after a number of moves is made
 function _starColor (){
-  if (counter.textContent == 20) {
+  if (counter.textContent == 30) {
     stars.item(2).classList.replace('star', 'lost-star');
   }
-  else if (counter.textContent == 35) {
-    stars.item(1).classList.replace('star', 'lost-star');
-  }
   else if (counter.textContent == 45) {
-    stars.item(0).classList.replace('star', 'lost-star');
+    stars.item(1).classList.replace('star', 'lost-star');
   }
 }
 
@@ -145,7 +142,8 @@ function _clock() {
       seconds = 0;
       minutes++;
   }
-  timer.innerHTML = ((minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
+  timer.innerHTML = `${minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00"}
+  :${seconds > 9 ? seconds : "0" + seconds} `;
   _timer();
 }
 
@@ -176,6 +174,7 @@ function _restart() {
   _resetClock();
 //resets stars
   _resetStars();
+  htmlStars = 3;
 //Removes modal
   _closeModal();
 }

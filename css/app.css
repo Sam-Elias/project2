@@ -146,7 +146,7 @@ h1 {
   background: #02ccba;
 }
 
-.modalBackground {
+.modal-background {
   display:none;
   position: fixed;
   z-index: 1;
@@ -159,10 +159,11 @@ h1 {
 
 }
 
-.modalContent {
+.modal-content {
   background: url('../img/fireworks2.jpg') no-repeat center center;
-  align-content: center;
-  margin: 20% auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 200px;
   padding: 20px;
   width: 700px;
   height: 487px;
@@ -171,7 +172,7 @@ h1 {
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-#modalTitle {
+#modal-title {
   text-align: center;
   color: #fff;
   padding: 0;
@@ -179,7 +180,7 @@ h1 {
   line-height: 70%;
 }
 
-#modalP {
+#modal-p {
   margin-top: 100px;
   margin-bottom: 60px;
   text-align: center;
